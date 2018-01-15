@@ -1,0 +1,57 @@
+<?php
+
+	require("function.php");
+	require("../vpconfig.php");
+	
+	$msg = "";
+	$db = "if17_tanjak";
+	$db = mysqli_connect("$serverHost", "$serverUsername", "$serverPassword", "$db");
+	
+	 if (isset($_POST['upload'])) {
+
+  	$food = mysqli_real_escape_string($db, $_POST['food']);
+	$price = mysqli_real_escape_string($db, $_POST['price']);
+
+	
+  	$sql = "INSERT INTO efood (food,price) VALUES ('$food','$price')";
+  	mysqli_query($db, $sql);
+  }
+	
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		Söökla menüü
+	</title>
+</head>
+
+<body>
+
+<div class="content">
+	<h1>Lae uue sööki</h1>
+	<form method="POST"action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+	<!--food, price-->
+	<input name="food" type="text" placeholder="Kirjuta söögi nimetus" required>
+	<input name="price" type="text" placeholder="Kirjuta söögi hind" required>
+	<input type="submit" value="upload" name="upload">
+	</form>
+</div>
+
+<?php 
+/*$html1 = "<table>";
+	foreach ($food as $p) {
+	$html1 .= "<tr>";
+		$html1 .= "<td>".$p->name."</td>";
+		$html1 .= "<td>".$p->price."</a></td>";
+	$html1 .= "</tr>";
+	}
+$html1 .= "</table>";
+echo $html1*/
+?>
+
+</body>
+</html>
