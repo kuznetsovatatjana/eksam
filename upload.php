@@ -1,7 +1,6 @@
 <?php
 
 	require("function.php");
-	require("editfunctions.php");
 	require("../vpconfig.php");
 	
 	$msg = "";
@@ -16,7 +15,7 @@
   	$sql = "INSERT INTO efood (food,price) VALUES ('$food','$price')";
   	mysqli_query($db, $sql);
     }
-	  //laadib kqik söök tabeli
+	  //laadib kqik sook tabeli
 	$eatfood = getAllFood();
 ?>
 
@@ -34,7 +33,7 @@
 
 <body>
 <ul>
-  <li><a href="edit.php">Siin saab menüüd muuda</a></li>
+
 </ul>
 <div class="content">
 	<h1>Siin saab lisada uue sööki</h1>
@@ -46,7 +45,8 @@
 	</form>
 </div>
 	<!--TAABEL-->
-	<h1>Siin saab vaadata menüü</h1>
+	<h1>Siin saab vaadata menüüd</h1>
+	<h2>Saab ka minna ühe postituse veebilehele</h2>
 	
 <?php
 	$html = "<table>";
@@ -54,6 +54,7 @@
 		$html .= "<tr>";
 			$html .= "<th>Söögi nimetus</th>";
 			$html .= "<th>Söögi hind</th>";
+			$html .= "<th>Muuda</th>";
 		$html .= "</tr>";
 		
 		// iga liikme kohta massiivis
@@ -62,6 +63,7 @@
 		$html .= "<tr>";
 			$html .= "<td>".$e->food."</td>";
 			$html .= "<td>".$e->price."</td>";
+			$html .= "<td><a href='edit.php?id=".$e->id."'>Naita</a></td>";
 		$html .= "</tr>";
 		}
 	

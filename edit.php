@@ -1,43 +1,60 @@
 <?php
-	//edit.php
+	//Require
 	require("function.php");
-	require("editfunctions.php");
+	require("../vpconfig.php");
 	
-	//kustutamine
+	$p = getsingleId($_GET["id"]);
+	
+	//postituse uuendamine
+	if(isset($_POST["updateFood"])){	
+		updateFood(cleanInput($_POST["food"]), cleanInput($_POST["price"]));
+		exit();	
+	}
+	
 	if(isset($_GET["delete"])){
 		deleteFood($_GET["id"]);
 		header("Location: upload.php");
 		exit();
 	}
-
-	//uuendamine
-	if(isset($_POST["update"])){
-		
-		updateFood(cleanInput($_POST["id"]), cleanInput($_POST["food"]), cleanInput($_POST["price"]));
-		
-		header("Location: edit.php?id=".$_POST["id"]."&success=true");
-     exit();	
-		
-	}
-	
-	//saadan kaasa id
-	$p = getSingleFoodData($_GET["id"]);
-	var_dump($p);
 	
 ?>
-<br><br>
-<a href="upload.php"> Tagasi menüü juurde </a>
 
-<h2>Siin saab muuda toitu menüüs</h2>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
-  	<label for="food" >Toit</label><br>
-	<input id="food" name="food" type="text" value="<?php echo $p->food;?>" ><br><br>
-  	<label for="price" >Hind</label><br>
-	<input id="price" name="price" type="number" value="<?=$p->price;?>"><br><br>
-  	
-	<input type="submit" name="update" value="Salvesta">
-  </form>
-  
-  
-  <a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		Söökla menuu
+	</title>
+</head>
+
+<body>
+</div>
+	<!--TAABEL-->
+	<h1>Ühe postituse info redakteerimine</h1>
+	<a href="upload.php">Tagasi</a>
+	
+<?php 
+$html = "<table>";
+	$html .= "<tr>";
+		$html .= "<td>".$p->food."</td>";
+		$html .= "<td>".$p->price."</a></td>";		
+	$html .= "</tr>";
+$html .= "</table>";
+echo $html
+?>
+
+<form method="POST">
+
+<br><label for="food" >Pealkiri:</label></br>
+<input class="text" name="food" value="<?=$p->food;?>" required> <br>
+
+<label for="price" >Hind:</label><br>
+<input name="price" type="number" placeholder="Kirjuta soogi hind" value="<?php echo $p->price;?>" required>
+
+<input type="submit" name="updatefood" value="Uuenda">
+<a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a></h1>
+
+</form>
+</body>
+</html>
