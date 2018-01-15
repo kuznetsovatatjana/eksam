@@ -6,7 +6,7 @@
 	$p = getsingleId($_GET["id"]);
 	
 	//postituse uuendamine
-	if(isset($_POST["updateFood"])){	
+	if(isset($_POST["updatefood"])){	
 		updateFood(cleanInput($_POST["food"]), cleanInput($_POST["price"]));
 		exit();	
 	}
@@ -24,14 +24,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>
-		Söökla menuu
+		Söökla menüü
 	</title>
 </head>
 
 <body>
 </div>
 	<!--TAABEL-->
-	<h1>Ühe postituse info redakteerimine</h1>
+	<h1>Ühe postituse info</h1>
 	<a href="upload.php">Tagasi</a>
 	
 <?php 
@@ -52,7 +52,7 @@ echo $html
 <label for="price" >Hind:</label><br>
 <input name="price" type="number" placeholder="Kirjuta soogi hind" value="<?php echo $p->price;?>" required>
 
-<input type="submit" name="updatefood" value="Uuenda">
+<input type="submit" name="updatefood" value="uuenda">
 <a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a></h1>
 
 </form>

@@ -88,12 +88,13 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"],
 		$GLOBALS["serverUsername"],
 		$GLOBALS["serverPassword"],
-		$GLOBALS["database"]);
+		$GLOBALS["database"]
+		);
 		
 		$stmt = $mysqli->prepare("UPDATE efood SET food=?, price=? WHERE id=?");
 		$stmt->bind_param("ssi", $food, $price, $_GET["id"]);
 		if($stmt->execute()){
-			header("Location: onefood.php?id=". $_GET["id"]."&success=true");
+			header("Location: edit.php?id=". $_GET["id"]."&success=true");
 		}
 		$stmt->close();
 		$mysqli->close();	
