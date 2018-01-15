@@ -12,7 +12,7 @@
 		$stmt = $mysqli->prepare("INSERT INTO efood (food, price) VALUE (?, ?)");
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ss", $food, $price);
+		$stmt->bind_param("si", $food, $price);
 	
 		if ( $stmt->execute() ) {
 		} else {
