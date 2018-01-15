@@ -1,7 +1,7 @@
 <?php
 
 	require("function.php");
-	require("../vpconfig.php");
+	require("../../vpconfig.php");
 	
 	$msg = "";
 	$db = "if17_tanjak";
