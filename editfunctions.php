@@ -9,7 +9,8 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], 
 		$GLOBALS["serverUsername"], 
 		$GLOBALS["serverPassword"], 
-		$database);
+		$database
+		);
 		
 		$stmt = $mysqli->prepare("SELECT food, price FROM efood WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("i", $edit_id);
@@ -43,7 +44,8 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], 
 		$GLOBALS["serverUsername"], 
 		$GLOBALS["serverPassword"], 
-		$database);
+		$database
+		);
 		
 		$stmt = $mysqli->prepare("UPDATE efood SET food=?, price=? WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("sii",$food, $price, $id);
@@ -63,11 +65,16 @@
     	
         $database = "if17_tanjak";
 		
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$database
+		);
 		
 		$stmt = $mysqli->prepare("UPDATE efood 
 		SET deleted=NOW()
-		WHERE id=? AND deleted IS NULL"
+		WHERE id=? 
+		AND deleted IS NULL"
 		);
 		
 		$stmt->bind_param("i",$id);

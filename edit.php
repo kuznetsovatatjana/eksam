@@ -16,7 +16,7 @@
 		updateFood(cleanInput($_POST["id"]), cleanInput($_POST["food"]), cleanInput($_POST["price"]));
 		
 		header("Location: edit.php?id=".$_POST["id"]."&success=true");
-        exit();	
+     exit();	
 		
 	}
 	
@@ -26,18 +26,18 @@
 	
 ?>
 <br><br>
-<a href="upload.php"> tagasi </a>
+<a href="upload.php"> Tagasi menüü juurde </a>
 
 <h2>Siin saab muuda toitu menüüs</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="food" >Toit</label><br>
 	<input id="food" name="food" type="text" value="<?php echo $p->food;?>" ><br><br>
-  	<label for="color" >Hind</label><br>
+  	<label for="price" >Hind</label><br>
 	<input id="price" name="price" type="number" value="<?=$p->price;?>"><br><br>
   	
 	<input type="submit" name="update" value="Salvesta">
   </form>
   
   
-  <a href="?id=<?=$_GET["id"];?>&delete=true">kustuta</a>
+  <a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a>
